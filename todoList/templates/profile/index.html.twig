@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{# <pre>
+    {{ dump(userForm.lastname) }}
+</pre> #}
+
+<main class="text-center mt-5">
+    <h1>Bienvenue dans votre espace personnel</h1>
+    <div class="container my-3 border border-secondary-subtle mt-5 p-3">
+        <section class="row justify-content-center mt-3">
+            <div class="col-md-6">
+                <div class="row justify-content-center ">
+                    <div class="col-md-6">
+                    <h5>Nom : {{ user.lastname }}</h5>
+                    <h5>Prénom : {{ user.firstname }}</h5>
+                    </div>
+                    <div class="col-md-6">
+                    <h5>E-mail : {{ user.email }}</h5>
+                <h5>Inscrit le : {{ user.getCreatedAt().format('Y-m-d H:i:s') }}</h5>
+                    </div>
+                </div>
+                <a class="btn btn-primary mt-3" href="{{ path('profil_edit', {id: user.id})}}" >Modifier mes informations</a>
+            </div>
+        </section>
+    </div>
+</main>
+
+{% endblock %}

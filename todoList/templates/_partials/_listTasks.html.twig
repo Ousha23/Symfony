@@ -1,0 +1,60 @@
+{# <pre>
+    {{ dump(tasks) }}
+</pre> #}
+<div class="row justify-content-center">
+{% for task in tasks %}
+    {% if fromFunction == 'getDoneTasks' %}
+        {% if task.status == 'Fait' %}
+    <div class="card m-3 border border-primary-subtle rounded bg-light cardStyle" style="width: 18rem;">
+        <div class="{% if task.status == 'Fait' %} text-decoration-line-through text-black-50 {% endif %}">
+            <div class="card-body">
+                <h5 class="card-title text-center ">{{ task.title }}</h5>
+                <p class="card-text fst-italic text-body-secondary">{{ task.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="fw-semibold">Date d'échéance : </span><br>{{ task.getDueDate() ? task.getDueDate().format('Y-m-d H:i:s') : 'Aucune date exigeance' }}</li>
+                <li class="list-group-item"><span class="fw-semibold">Satut : </span>{{ task.status ? task.status :'aucun statut défini' }}</li>
+                <li class="list-group-item"><span class="fw-semibold">Date création : </span><br>{{ task.getCreatedAt() ? task.getCreatedAt().format('Y-m-d H:i:s') : '' }}</li>
+                <li class="{% if task.priority.getName() == "Priorité Haute" %} text-danger {% endif %} list-group-item text-center">{{ task.priority is not null ? task.priority.getName() : 'Aucune priorité définie'  }}</li>
+            </ul>
+        </div>
+        <div class="card-body text-center">
+            {% if task.status != 'Fait'%}
+            <a class="iconStyle" href="{{ path('tasks_edit_task', {id: task.id})}}"><i class="fa-regular fa-pen-to-square m-1 text-primary"></i></a>
+            <a class="iconStyle" href="{{ path('tasks_finish_task', {'id': task.id}) }}"><i class="fa-solid fa-check m-1 text-success"></i></a>
+            {% endif %}
+            <a class="deleteLink iconStyle" href="{{ path('tasks_delete_task', {'id': task.id}) }}"><i class="fa-solid fa-trash m-1 text-danger"></i></a>
+        </div>
+    </div>
+     {% endif %}
+    {% else %}
+    {% if task.status != 'Fait' %}
+    <div class="card m-3 border border-primary-subtle rounded bg-light cardStyle" style="width: 18rem;">
+        <div class="{% if task.status == 'Fait' %} text-decoration-line-through text-black-50 {% endif %}">
+            <div class="card-body">
+                <h5 class="card-title text-center ">{{ task.title }}</h5>
+                <p class="card-text fst-italic text-body-secondary">{{ task.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="fw-semibold">Date d'échéance : </span><br>{{ task.getDueDate() ? task.getDueDate().format('Y-m-d H:i:s') : 'Aucune date exigeance' }}</li>
+                <li class="list-group-item"><span class="fw-semibold">Satut : </span>{{ task.status ? task.status :'aucun statut défini' }}</li>
+                <li class="list-group-item"><span class="fw-semibold">Date création : </span><br>{{ task.getCreatedAt() ? task.getCreatedAt().format('Y-m-d H:i:s') : '' }}</li>
+                <li class="{% if task.priority.getName() == "Priorité Haute" %} text-danger {% endif %} list-group-item text-center">{{ task.priority is not null ? task.priority.getName() : 'Aucune priorité définie'  }}</li>
+            </ul>
+        </div>
+        <div class="card-body text-center">
+            {% if task.status != 'Fait'%}
+            <a class="iconStyle" href="{{ path('tasks_edit_task', {id: task.id})}}"><i class="fa-regular fa-pen-to-square m-1 text-primary"></i></a>
+            <a class="iconStyle" href="{{ path('tasks_finish_task', {'id': task.id}) }}"><i class="fa-solid fa-check m-1 text-success"></i></a>
+            {% endif %}
+            <a class="deleteLink iconStyle" href="{{ path('tasks_delete_task', {'id': task.id}) }}"><i class="fa-solid fa-trash m-1 text-danger"></i></a>
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+{% endfor %}
+{% if tasks is empty %}
+    <p class="text-center mt-5">Aucune tâche à afficher</p>
+{% endif %}
+
+</div>

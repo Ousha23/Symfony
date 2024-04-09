@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include "_partials/_barreCat.html.twig" %}
+    <main>
+        {% if app.user %}
+            <div class="text-center my-4">
+                <p class="fs-5 text">Bienvenue "{{ app.user.firstname }}" dans votre mini application pour la gestion de vos tâches.<br>
+                Veuillez séléctionner une catégorie ou bien afficher toutes vos tâches créés. <br>
+                Vous pouvez à tout moment créer une nouvelle tâche. <br>
+                Ou revenir ici en cliquant sur Accueil.</p>
+            </div>
+            <div class="container border border-secondary-subtle p-3">
+                <div class="row text-center">
+                    <h2>Liste des tâches d'aujourd'hui</h2>
+                </div>
+                {% include "_partials/_listTasks.html.twig" %}
+                
+            </div>
+        {% endif %}
+    </main>
+{% endblock %}

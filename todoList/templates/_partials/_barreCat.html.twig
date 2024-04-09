@@ -1,0 +1,27 @@
+{% if app.user %}
+    <div class="container p-3">
+        <div class="row justify-content-around">
+            <h2 class="col-6">Les Catégories</h2>
+            <a id="addBtn" class="btn btn-outline-light col-md-2" ><i class="fa-solid fa-plus"></i> Nouvelle Catégorie</a>
+        </div>
+        <div class="row justify-content-center">
+        {% for category in categories %}
+            <a class="btn btn-primary m-2 col-md-2" href="{{ path('categories_category_tasks', {id: category.id})}}">{{ category.name }}</a>
+        {% endfor %}
+        </div>
+            
+        
+    </div>
+
+    {% else %}
+    <div class="container p-5">
+        <div class="row text-center my-5">
+            <h2 class="mt-5">{{ 'welcome_message'|trans }}</h2>
+        <div class="row justify-content-center mt-5">
+            <a href="{{ path('app_login')}}" class="btn btn-primary m-5 col-3"> {{ 'login'|trans }}</a>
+            <a href="{{ path('app_register')}}" class="btn btn-primary m-5 col-3"> {{ 'register'|trans }}</a>
+        </div>
+            
+        </div>
+    </div>
+    {% endif %}

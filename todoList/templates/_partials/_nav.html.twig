@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary ">
+    <div class="container-fluid">
+        <a class="navbar-brand text-primary-emphasis" href="{{ path('app_main')}}">{{ 'home'|trans }}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a data-lang="{{ app.session.get('_locale') }}" href="{{ app.session.get('_locale') == 'fr' ? path('change_language', {lang:'en'}) : path('change_language', {lang:'fr'}) }}" id="linkIcon">
+            <img id="iconLanguage" src="{{ app.session.get('_locale') == 'fr' ? asset('assets/uploads/royaume-uni.png') : asset('assets/uploads/france.png') }}" alt="" style="width: 20px;">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% if app.user %}
+            {# <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Rechercher une tâche" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form> #}
+            <ul class="navbar-nav ms-auto mx-2 mb-lg-0">
+                <li class="nav-item">
+                    <a href="{{ path('tasks_add_task')}}" class="btn btn-outline-primary mx-1">{{ 'addTask'|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('tasks_all_tasks')}}" class="btn btn-outline-primary">{{ 'all'|trans }}</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a href="{{ path('tasks_done_tasks')}}" class="btn btn-outline-primary">Tâches terminées</a>
+                </li>
+                
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    {% if app.request.attributes.get('_route') != 'tasks_all_tasks_table' %}
+                        <a class="nav-link" href="{{ path('tasks_all_tasks_table')}}">{{ 'table'|trans }}</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_profile', {id: app.user.id})}}">{{ 'profil'|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout')}}">{{ 'logout'|trans }}</a>
+                </li>
+            {% else %}
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_register')}}">{{ 'register'|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login')}}">{{ 'login'|trans }}</a>
+                </li>  
+            {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,12 @@
+{{ form_start(taskForm)}}
+  {# c'est le label + champs #}
+    {{ form_row(taskForm.title)}}
+    {{ form_row(taskForm.description)}}
+    {{ form_row(taskForm.category)}}
+    {{ form_row(taskForm.status)}}
+    {{ form_row(taskForm.priority)}}
+    {{ form_row(taskForm.due_date)}}
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">{{ button_label|default('Valider l\'ajout')}}</button>
+    </div>
+{{ form_end(taskForm)}}

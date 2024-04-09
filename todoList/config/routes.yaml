@@ -1,0 +1,14 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+change_language:
+    path: /change-language/{lang}
+    methods: GET
+    controller: App\Controller\LanguageController::changeLanguage
+# app_main:
+#     path: /
+#     defaults: { _locale: '%locale%' } # Use a default locale here (e.g., 'en')
+#     requirements:
+#         _locale: ^(en|fr)$ # Restrict accepted locales (optional)

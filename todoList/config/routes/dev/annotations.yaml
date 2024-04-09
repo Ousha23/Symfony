@@ -1,0 +1,5 @@
+# config/routes/dev/annotations.yaml
+controllers:
+    resource: ../../../src/Controller/
+    type: annotation
+    prefix: /{my_locale_provider}

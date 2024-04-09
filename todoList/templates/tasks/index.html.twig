@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des tâches {% endblock %}
+{% block body %}
+<main class="my-5">
+    {% include "_partials/_barreCat.html.twig" %}
+    <div class="container border border-secondary-subtle p-3">
+        <div class="row text-center">
+            <h2>Liste de toutes les tâches</h2>
+        </div>
+        {% include "_partials/_listTasks.html.twig" %}
+    </div>
+</main>
+    
+{% endblock %}
